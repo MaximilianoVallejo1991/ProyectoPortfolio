@@ -4,7 +4,6 @@ package com.maxsalvadorportfolio.jmv2.controller;
 import com.maxsalvadorportfolio.jmv2.Dto.DtoProyectos;
 import com.maxsalvadorportfolio.jmv2.Security.Controller.Mensaje;
 import com.maxsalvadorportfolio.jmv2.entity.Proyectos;
-
 import com.maxsalvadorportfolio.jmv2.service.SProyectos;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
