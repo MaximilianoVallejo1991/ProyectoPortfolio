@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.maxsalvadorportfolio.jmv2.Security.jwt;
 
 import com.maxsalvadorportfolio.jmv2.Security.Entity.UsuarioPrincipal;
@@ -24,18 +21,20 @@ import org.springframework.stereotype.Component;
 public class JwtProvider {
 
     private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
+    private static final long expiration = 24*60*60;
 
-    @Value("$(jwt.secret)")
+    @Value("${jwt.secret}")
+    
+
     private String secret;
 
-    @Value("$(jwt.expiration)")
-    private int expiration;
+    
 
     public String generateToken(Authentication authentication) {
         UsuarioPrincipal usuarioPrincipal = (UsuarioPrincipal) authentication.getPrincipal();
         return Jwts.builder().setSubject(usuarioPrincipal.getUsername())
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(new Date().getTime() + expiration * 1000))
+                .setExpiration(new Date(new Date().getTime() + (expiration * 1000)))
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
 

@@ -20,15 +20,7 @@ public class UsuarioService {
 
     }
 
-    public boolean existByNombreUsuario(String nombreUsuario) {
-        return iusuarioRepository.existByNombreUsuario(nombreUsuario);
-
-    }
-
-    public boolean existByEmail(String email) {
-        return iusuarioRepository.existByEmail(email);
-
-    }
+    
 
     public void save(Usuario usuario) {
         iusuarioRepository.save(usuario);

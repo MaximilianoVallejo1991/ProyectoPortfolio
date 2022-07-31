@@ -1,4 +1,3 @@
-
 package com.maxsalvadorportfolio.jmv2.Security;
 
 import com.maxsalvadorportfolio.jmv2.Security.Service.UserDetailsImpl;
@@ -26,6 +25,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 
 public class MainSecurity extends WebSecurityConfigurerAdapter{
+    
     @Autowired
     UserDetailsImpl userDetailsImpl;
     @Autowired
@@ -46,7 +46,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/auth/**").permitAll()
+                .antMatchers("**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling()
@@ -70,10 +70,13 @@ public class MainSecurity extends WebSecurityConfigurerAdapter{
         return super.authenticationManagerBean();
     }
     
-    @Bean
+    
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsImpl).passwordEncoder(passwordEncoder());
     }
     
 }
+    
+    
+
